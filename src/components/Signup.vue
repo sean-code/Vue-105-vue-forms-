@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <form @submit.prevent="handleSubmit">
         <label>Email</label>
         <input type="email" required v-model="email">
         <label>Password</label>
@@ -37,12 +37,17 @@
             <input type="checkbox" value='Marion' v-model="names">
             <label>Marion</label>
         </div>
+        <div  class="submit">
+            <button>Create an Account</button>
+        </div>
     </form>
+
     <p>Email: {{ email }}</p>
     <p> Password: {{ password }}</p>
     <p>Role: {{ role }}</p>
     <p>Terms Accepted: {{ terms }}</p>
     <p>Names: {{ names }}</p>
+
 </template>
 
 
@@ -69,12 +74,15 @@
                     this.tempSkill = ''
                 }
             },
-            deleteSkill(skill){
-                // console.log(skill)
-                this.skills = this.skills.filter((item) => {
+                deleteSkill(skill){
+                    // console.log(skill)
+                    this.skills = this.skills.filter((item) => {
                     return skill !== item
-            })
-        }
+                })
+            },
+            handleSubmit(){
+                console.log("form Submitted")
+            }
         }
     }
 </script>
@@ -126,6 +134,19 @@
         color: #777;
         font-weight: bold;
         cursor: pointer;
+    }
+
+    button{
+        background: #0b6dff;
+        border: 0;
+        padding: 10px 20px;
+        margin-top: 20px;
+        color: white;
+        border-radius: 20px;
+    }
+
+    .submit{
+        text-align: center;
     }
 
 </style>
