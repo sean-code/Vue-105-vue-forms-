@@ -10,12 +10,16 @@
             <option>Web Developer</option>
             <option>Web Designer</option>
         </select>
+
+
         <!-- Keyboard Events -->
         <label>Skills</label>
         <input type="text" v-model="tempSkill" @keyup="addSkill">
         <div v-for="skill in skills" :key="skill" class="pill">
-            {{ skill }}
+            <span @click="deleteSkill(skill)">{{ skill }}</span>
         </div>
+
+
         <!-- Checkbox -->
         <div class="terms">
             <input type="checkbox" required v-model="terms">
@@ -64,7 +68,13 @@
                     }
                     this.tempSkill = ''
                 }
-            }
+            },
+            deleteSkill(skill){
+                // console.log(skill)
+                this.skills = this.skills.filter((item) => {
+                    return skill !== item
+            })
+        }
         }
     }
 </script>
@@ -103,6 +113,19 @@
         width: 16%;
         position: relative;
         top: 2px;
+    }
+
+    .pill{
+        display: inline-block;
+        margin: 20px 10px 0 0;
+        padding: 6px 12px;
+        background: #eee;
+        border-radius: 20px;
+        font-size: 12px;
+        letter-spacing: 1px;
+        color: #777;
+        font-weight: bold;
+        cursor: pointer;
     }
 
 </style>
