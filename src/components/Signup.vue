@@ -4,6 +4,9 @@
         <input type="email" required v-model="email">
         <label>Password</label>
         <input type="password" required v-model="password">
+        <div v-if="passwordError" class="error">
+            {{ passwordError }}
+        </div>
 
         <label>Role</label>
         <select v-model="role">
@@ -61,7 +64,8 @@
                 terms: false,
                 names: [],
                 tempSkill: '',
-                skills: []
+                skills: [],
+                passwordError: ''
             }
         },
         methods:{
@@ -81,7 +85,9 @@
                 })
             },
             handleSubmit(){
-                console.log("form Submitted")
+                // console.log("form Submitted")
+                // Password validation
+                this.passwordError = this.password.length > 5 ? '' : 'Password must be at least 6 characters'
             }
         }
     }
