@@ -13,7 +13,9 @@ npm run serve
 ### Compiles and minifies for production
 ```
 npm run build
-```
+``` 
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+--- For country code:
+
+install with: ``` npm install i18n-iso-countries --save``` 
