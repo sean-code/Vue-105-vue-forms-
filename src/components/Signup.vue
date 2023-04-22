@@ -15,6 +15,14 @@
         </select>
 
 
+        <label>Country</label>
+        <input type="text">
+        <select v-model="selected">
+            <option v-for="country in countries" :value="country.value">
+            {{ country.label }}
+            </option>
+        </select>
+
         <!-- Keyboard Events -->
         <label>Skills</label>
         <input type="text" v-model="tempSkill" @keyup="addSkill">
@@ -55,12 +63,25 @@
 
 
 <script>
+
+const countries = require('i18n-iso-countries')
+countries.registerLocale(require('i18n-iso-countries/langs/en.json'))
+
+
     export default{
+        name: 'CountrySelection',
+        computed: {
+            countries () {
+             const list = countries.getNames('en', { select: 'official' })
+             return Object.keys(list).map((key) => ({ value: key, label: list[key] }))
+            }
+        },
         data(){
             return{
+                selected: null,
                 email: '',
                 password: '',
-                role: 'Web Developer',
+                role: '',
                 terms: false,
                 names: [],
                 tempSkill: '',
